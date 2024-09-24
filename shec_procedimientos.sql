@@ -132,7 +132,7 @@ b.emition_date,
 b.price_kw,
 	h.stratum,
    sum(d.time_on) as total_time_on,
-   (sum (d.time_on)* b.price_kw) as total_cost
+   (sum (d.time_on) * sum(d.expent) * b.price_kw) as total_cost
    
 from 
     home h
@@ -141,6 +141,6 @@ join
 join 
 	bill b on b.id_home = h.id_home
 group by
-	 h.id_home, b.emition_date, b.price_kw
+	 h.id_home, b.emition_date, b.price_kw, d.expent
 	
 select * from view_bill;
